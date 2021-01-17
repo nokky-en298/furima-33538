@@ -2,13 +2,17 @@
 
 ## users テーブル
 
-| Column     | Type   | Options                  |
-| ---------- | ------ | ------------------------ |
-| email      | string | null: false unique: true |
-| password   | string | null: false              |
-| name       | string | null: false              |
-| nickname   | string | null: false              |
-| birthday   | string | null: false              |
+| Column             | Type   | Options                  |
+| ------------------ | ------ | ------------------------ |
+| email              | string | null: false unique: true |
+| password           | string | null: false              |
+| encrypted_password | string | null: false              |
+| last-name          | string | null: false              |
+| first-name         | string | null: false              |
+| last-name-kana     | string | null: false              |
+| first-name-kana    | string | null: false              |
+| nickname           | string | null: false              |
+| birthday           | date   | null: false              |
 
 ### Association
 
@@ -17,18 +21,17 @@
 
 ## items テーブル
 
-| Column     | Type       | Options                        |
-| ---------- | ---------- | ------------------------------ |
-| image      | string     | null: false                    |
-| item name  | string     | null: false                    |
-| text       | text       | null: false                    |
-| category   | string     | null: false                    |
-| condition  | string     | null: false                    |
-| postage    | integer    | null: false                    |
-| area       | string     | null: false                    |
-| days       | string     | null: false                    |
-| price      | integer    | null: false                    |
-| exhibitor  | references | null: false, foreign_key: true |
+| Column       | Type       | Options                        |
+| ------------ | ---------- | ------------------------------ |
+| name         | string     | null: false                    |
+| text         | text       | null: false                    |
+| category_id  | integer    | null: false                    |
+| condition_id | integer    | null: false                    |
+| postage_id   | integer    | null: false                    |
+| area_id      | integer    | null: false                    |
+| day_id       | integer    | null: false                    |
+| price        | integer    | null: false                    |
+| exhibitor    | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -37,26 +40,27 @@
 
 ## purchases テーブル
 
-| Column         | Type       | Options                        |
-| -------------- | ---------- | ------------------------------ |
-| buyer          | references | null: false, foreign_key: true |
-| purchased item | references | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 
-- has_many :addresses
+- has_one :address
 - belongs_to :item
 - belongs_to :user
 
 ## addresses テーブル
 
-| Column       | Type    | Options                        |
-| ------------ | ------- | ------------------------------ |
-| postal code  | integer | null: false, foreign_key: true |
-| prefecture   | string  | null: false, foreign_key: true |
-| municipality | string  | null: false, foreign_key: true |
-| address      | string  | null: false, foreign_key: true |
-| number       | integer | null: false, foreign_key: true |
+| Column          | Type    | Options                        |
+| ------------    | ------- | ------------------------------ |
+| postal code     | string  | null: false, foreign_key: true |
+| prefecture_id   | integer | null: false, foreign_key: true |
+| municipality_id | integer | null: false, foreign_key: true |
+| address_id      | integer | null: false, foreign_key: true |
+| building_id     | integer | null: false, foreign_key: true |
+| phone-number    | string  | null: false, foreign_key: true |
 
 ### Association
 
