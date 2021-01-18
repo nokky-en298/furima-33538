@@ -31,7 +31,7 @@
 | area_id      | integer    | null: false                    |
 | day_id       | integer    | null: false                    |
 | price        | integer    | null: false                    |
-| exhibitor    | references | null: false, foreign_key: true |
+| user         | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -53,14 +53,15 @@
 
 ## addresses テーブル
 
-| Column          | Type    | Options                        |
-| ------------    | ------- | ------------------------------ |
-| postal code     | string  | null: false, foreign_key: true |
-| prefecture_id   | integer | null: false, foreign_key: true |
-| municipality_id | integer | null: false, foreign_key: true |
-| address_id      | integer | null: false, foreign_key: true |
-| building_id     | integer | null: false, foreign_key: true |
-| phone-number    | string  | null: false, foreign_key: true |
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| postal code     | string     | null: false, foreign_key: true |
+| prefecture_id   | string     | null: false, foreign_key: true |
+| municipality_id | string     | null: false, foreign_key: true |
+| address_id      | string     | null: false, foreign_key: true |
+| building_id     | string     | foreign_key: true              |
+| phone-number    | string     | null: false, foreign_key: true |
+| purchase        | references | null: false, foreign_key: true |
 
 ### Association
 
