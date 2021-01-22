@@ -9,7 +9,8 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   with_options presence: true do
-    validates :image, :name, :text
+    validates :image
+    validates :name, :text
     validates :price, numericality: { with: /^[0-9]+$/, message: "Half-width number / Out of setting range" ,greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   end
   with_options numericality: { other_than: 1, message: 'Select'} do
