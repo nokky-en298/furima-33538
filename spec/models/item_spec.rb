@@ -36,8 +36,20 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Category Select')
       end
 
+      it 'カテゴリーが---では登録できないこと' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Category Select')
+      end
+
       it '商品の状態が選択されていないと登録できないこと' do
         @item.condition_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Condition Select')
+      end
+
+      it '商品の状態が---では登録できないこと' do
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Condition Select')
       end
@@ -48,14 +60,32 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Postage Select')
       end
 
+      it '商品の状態が---では登録できないこと' do
+        @item.postage_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Postage Select')
+      end
+
       it '発送元の地域が選択されていないと登録できないこと' do
         @item.area_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include('Area Select')
       end
 
+      it '発送元の地域が---では登録できないこと' do
+        @item.area_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Area Select')
+      end
+
       it '発送までの日数が選択されていないと登録できないこと' do
         @item.day_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Day Select')
+      end
+
+      it '発送までの日数が---では登録できないこと' do
+        @item.day_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Day Select')
       end
@@ -67,9 +97,15 @@ RSpec.describe Item, type: :model do
       end
 
       it '販売価格の範囲が、¥300~¥9,999,999の間の設定でないと登録できないこと' do
-        @item.price = 200
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include('Price Half-width number / Out of setting range')
+      end
+
+      it '販売価格の範囲が、¥300~¥9,999,999の間の設定でないと登録できないこと' do
+        @item.price = 10000000
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price Half-width number / Out of setting range')  
       end
     end
   end
