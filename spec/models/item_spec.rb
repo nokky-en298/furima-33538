@@ -33,43 +33,43 @@ RSpec.describe Item, type: :model do
       it 'カテゴリーが選択されていないと登録できないこと' do
         @item.category_id = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category Select")
+        expect(@item.errors.full_messages).to include('Category Select')
       end
 
       it '商品の状態が選択されていないと登録できないこと' do
         @item.condition_id = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition Select")
+        expect(@item.errors.full_messages).to include('Condition Select')
       end
 
       it '配送料の負担が選択されていないと登録できないこと' do
         @item.postage_id = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Postage Select")
+        expect(@item.errors.full_messages).to include('Postage Select')
       end
 
       it '発送元の地域が選択されていないと登録できないこと' do
         @item.area_id = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Area Select")
+        expect(@item.errors.full_messages).to include('Area Select')
       end
 
       it '発送までの日数が選択されていないと登録できないこと' do
         @item.day_id = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Day Select")
+        expect(@item.errors.full_messages).to include('Day Select')
       end
 
       it '販売価格の入力がないと登録できないこと' do
         @item.price = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price can't be blank", "Price Half-width number / Out of setting range")
+        expect(@item.errors.full_messages).to include("Price can't be blank", 'Price Half-width number / Out of setting range')
       end
 
       it '販売価格の範囲が、¥300~¥9,999,999の間の設定でないと登録できないこと' do
         @item.price = 200
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Half-width number / Out of setting range")
+        expect(@item.errors.full_messages).to include('Price Half-width number / Out of setting range')
       end
     end
   end
