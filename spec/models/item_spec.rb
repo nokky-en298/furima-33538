@@ -96,6 +96,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank", 'Price Half-width number / Out of setting range')
       end
 
+      it '販売価格が全角入力では登録できないこと' do
+        @item.price = '１０００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price Half-width number / Out of setting range')
+      end
+
       it '販売価格の範囲が、¥300~¥9,999,999の間の設定でないと登録できないこと' do
         @item.price = 299
         @item.valid?
@@ -103,9 +109,9 @@ RSpec.describe Item, type: :model do
       end
 
       it '販売価格の範囲が、¥300~¥9,999,999の間の設定でないと登録できないこと' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price Half-width number / Out of setting range')  
+        expect(@item.errors.full_messages).to include('Price Half-width number / Out of setting range')
       end
     end
   end
