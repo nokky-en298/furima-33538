@@ -37,6 +37,10 @@ group :development, :test do
   gem 'gimei'
 end
 
+group :production do
+  gem 'unicorn', '5.4.1'
+end
+
 group :development do
   gem 'rubocop', require: false
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
