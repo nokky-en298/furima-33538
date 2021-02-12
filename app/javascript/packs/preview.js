@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
     const blobImage = document.createElement('img');
     blobImage.setAttribute('src', blob);
-      blobImage.width = 100;
-      blobImage.height = 100;
+      blobImage.width = 250;
+      blobImage.height = 250;
 
     imageElement.appendChild(blobImage);
     ImageList.appendChild(imageElement);
